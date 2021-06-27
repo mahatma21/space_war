@@ -3,19 +3,21 @@ import sys
 import os
 import pyautogui
 
-WIN_HEIGHT = pyautogui.size()[1] - 200
-WIN_WIDTH = WIN_HEIGHT * 4 // 3
-WIN_SIZE = WIN_WIDTH, WIN_HEIGHT
-WIN = pygame.display.set_mode(WIN_SIZE)
-
-MIDDLE_BORDER = pygame.Rect((WIN_WIDTH / 2) - 5, 0, 10, WIN_HEIGHT)
-
 CYAN = (0, 235, 235)
 RED = (235, 0, 0)
 WHITE = (235, 235, 235)
 
+WIN_HEIGHT = pyautogui.size()[1] - 200
+WIN_WIDTH = WIN_HEIGHT * 4 // 3
+WIN_SIZE = WIN_WIDTH, WIN_HEIGHT
+WIN = pygame.display.set_mode(WIN_SIZE)
+pygame.display.set_caption("Space War")
+pygame.display.set_icon((pygame.image.load(os.path.join('assets', 'icon.png'))))
+
+MIDDLE_BORDER = pygame.Rect((WIN_WIDTH / 2) - 5, 0, 10, WIN_HEIGHT)
+
 BG = pygame.transform.smoothscale(pygame.image.load(
-    os.path.join('assets', 'bg.png')), WIN_SIZE)
+    os.path.join('assets', 'bg.png')).convert(), WIN_SIZE)
 
 PLAYER_SIZE = PLAYER_WIDTH, PLAYER_HEIGHT = 64, 48
 PLAYER_VEL = 8
@@ -25,7 +27,7 @@ BLUE_SPACESHIP = pygame.transform.smoothscale(pygame.transform.rotate(
     pygame.image.load(
         os.path.join(
             'assets',
-            'blue_spaceship.png')),
+            'blue_spaceship.png')).convert_alpha(),
     90),
     PLAYER_SIZE)
 
@@ -33,7 +35,7 @@ RED_SPACESHIP = pygame.transform.smoothscale(pygame.transform.rotate(
     pygame.image.load(
         os.path.join(
             'assets',
-            'red_spaceship.png')),
+            'red_spaceship.png')).convert_alpha(),
     270),
     PLAYER_SIZE)
 
